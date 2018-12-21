@@ -347,14 +347,18 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
+	
 	public static void main(String args[]) {
+		final  MainFrame frame = new MainFrame();
 		
 		
 	
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new MainFrame().setVisible(true);
+				frame.setVisible(true);
+				
+				
 				
 			}
 		});
@@ -370,7 +374,7 @@ public class MainFrame extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				new MainFrame().sendData();
+				frame.sendData();
 				
 			};
 		}.start();

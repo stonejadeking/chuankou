@@ -202,7 +202,8 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sendData(e);
+				System.out.println("jiang : " + e.toString());
+//				sendData();
 			}
 		});
 	}
@@ -269,14 +270,17 @@ public class MainFrame extends JFrame {
 	 * @param evt
 	 *            点击事件
 	 */
-	private void sendData(java.awt.event.ActionEvent evt) {
-		String data = dataInput.getText().toString();
+	private void sendData() {
+//		String data = dataInput.getText().toString();
+		String data = "[K1C]	[KF01C]";
+		System.out.println("jiang : -- " + data );
 		try {
 			/*SerialPortManager.sendToPort(serialport,
 					ByteUtils.hexStr2Byte(data));*/
 
 
 			//---------------------------------------//
+	
 			SerialPortManager.sendToPort(serialport,
 					(new String(data.getBytes(),"US-ASCII")).getBytes());
 		}
@@ -344,10 +348,31 @@ public class MainFrame extends JFrame {
 		}
 	}
 	public static void main(String args[]) {
+		
+		
+	
+		
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new MainFrame().setVisible(true);
+				
 			}
 		});
+		
+		
+		new Thread() {
+			public void run() {
+				
+				
+				try {
+					Thread.sleep(15000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				new MainFrame().sendData();
+				
+			};
+		}.start();
 	}
 }
